@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
@@ -45,7 +46,12 @@ class BlogArticleDetails(generics.RetrieveAPIView):
     Get a blog article
     """
 
-    queryset = BlogArticle.objects.all()
+    def get_object(self):
+        return BlogArticle.objects.get(
+            pk=self.kwargs["pk"],
+            slug=self.kwargs["slug"],
+        )
+
     serializer_class = BlogArticleSerializer
     renderer_classes = (TemplateHTMLRenderer,)
 

@@ -9,7 +9,7 @@ app_name = "blog_article"
 urlpatterns = [
     path("blog-articles/", BlogArticleList.as_view(), name="blog-article-list"),
     path(
-        "blog-articles/<int:pk>",
+        "blog-articles/<int:pk>/<slug:slug>/",
         BlogArticleDetails.as_view(),
         name="blog-article-details",
     ),
