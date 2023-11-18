@@ -30,7 +30,7 @@ class BlogArticleList(generics.ListAPIView):
     Get entries paginated by 5 items
     """
 
-    queryset = BlogArticle.objects.all()
+    queryset = BlogArticle.objects.all().order_by("-publication_datetime")
     serializer_class = BlogArticleSerializer
     pagination_class = BlogArticlePagination
     renderer_classes = (TemplateHTMLRenderer,)
