@@ -32,6 +32,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 DEBUG = True
 
 ALLOWED_HOSTS = ["blog-api-production-760e.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://blog-api-production-760e.up.railway.app"]
 
 
 # Application definition
