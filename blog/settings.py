@@ -31,7 +31,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["blog-api-production-760e.up.railway.app"]
+ALLOWED_HOSTS = ["blog-api-production-760e.up.railway.app", "localhost"]
 CSRF_TRUSTED_ORIGINS = ["https://blog-api-production-760e.up.railway.app"]
 
 
