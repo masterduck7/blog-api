@@ -24,10 +24,10 @@ class BlogArticle(models.Model):
 
 
 class ContactRequest(models.Model):
-    email = models.CharField(max_length=200, unique=True)
-    name = models.CharField(max_length=200, unique=True)
+    email = models.CharField(max_length=200, blank=False, null=False)
+    name = models.CharField(max_length=200, blank=False, null=False)
     content = models.TextField(blank=False, null=False)
-    date = models.DateField()
+    date = models.DateField(blank=False, null=False)
 
     def __str__(self):
         return self.name
