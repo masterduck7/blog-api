@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<h1>Blog Articles</h1>
+		{% for blog_article in results %}
+		<h2>Title: {{ blog_article.title }}</h2>
+		<p>Content: {{ blog_article.title }}</p>
+		<p>Author full name: {{ blog_article.title }}</p>
+		<p>Publication datetime: {{ blog_article.title }}</p>
+		{% endfor %}
+
+		<div>
+			{% if previous %}
+			<a href="{{ previous }}" style="text-decoration: none">
+				<button>&laquo;</button>
+			</a>
+			{% else %}
+			<a href="{{ previous }}" style="text-decoration: none">
+				<button disabled>&laquo;</button>
+			</a>
+			{% endif %}
+			<a>{{current_page}} of {{total_pages}}</a>
+			{% if next %}
+			<a href="{{ next }}" style="text-decoration: none">
+				<button>&raquo;</button>
+			</a>
+			{% else %}
+			<a href="{{ next }}" style="text-decoration: none">
+				<button disabled>&raquo;</button>
+			</a>
+			{% endif %}
+		</div>
+
+		<div>
+			{% for page_number in page_range %} {% if page_number == current_page %}
+			<a
+				href="http://localhost:8000/blog-articles/?page={{ page_number }}"
+				style="text-decoration: none"
+			>
+				<button disabled>{{page_number}}</button>
+			</a>
+			{% else %}
+			<a
+				href="http://localhost:8000/blog-articles/?page={{ page_number }}"
+				style="text-decoration: none"
+			>
+				<button>{{page_number}}</button>
+			</a>
+			{% endif %} {% endfor %}
+		</div>
+	</body>
+</html>

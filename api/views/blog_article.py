@@ -1,4 +1,5 @@
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework import generics
 
@@ -17,6 +18,7 @@ class BlogArticlePagination(PageNumberPagination):
                 "current_page": self.page.number,
                 "next": self.get_next_link(),
                 "previous": self.get_previous_link(),
+                "page_range": self.page.paginator.page_range,
                 "results": data,
             }
         )
@@ -30,6 +32,12 @@ class BlogArticleList(generics.ListAPIView):
     queryset = BlogArticle.objects.all()
     serializer_class = BlogArticleSerializer
     pagination_class = BlogArticlePagination
+    renderer_classes = (TemplateHTMLRenderer,)
+    template_name = "blog_article_list.html"
+
+    def get(self, request):
+        paginate_queryset = self.paginate_queryset(self.get_queryset())
+        return self.get_paginated_response(paginate_queryset)
 
 
 class BlogArticleDetails(generics.RetrieveAPIView):
@@ -39,3 +47,10 @@ class BlogArticleDetails(generics.RetrieveAPIView):
 
     queryset = BlogArticle.objects.all()
     serializer_class = BlogArticleSerializer
+    renderer_classes = (TemplateHTMLRenderer,)
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return Response(
+            {"blog_article": self.object}, template_name="blog_article_details.html"
+        )
