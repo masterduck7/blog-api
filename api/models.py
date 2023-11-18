@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-class Blog(models.Model):
+class BlogArticle(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     content = models.CharField(max_length=200, blank=False, null=False)
@@ -18,6 +18,9 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+    def full_name(self):
+        return self.user.get_full_name()
 
 
 class ContactRequest(models.Model):

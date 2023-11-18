@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from api.models import Blog, ContactRequest
+from api.models import BlogArticle, ContactRequest
 
 
-@admin.register(Blog)
+@admin.register(BlogArticle)
 class BlogAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         "slug": [
