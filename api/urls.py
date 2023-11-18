@@ -16,7 +16,7 @@ urlpatterns = [
     path("contact-request", ContactRequestFormView.as_view(), name="contact-request"),
     path(
         "contact-request-success/",
-        TemplateView.as_view(template_name="contact-request-success.html"),
-        name="success",
+        TemplateView.as_view(template_name="contact_request_success.html"),
+        name="contact-request-success",
     ),
 ]
